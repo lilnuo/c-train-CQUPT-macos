@@ -50,7 +50,7 @@ func GetScore(choi, username, password string, i int, score *int) {
 	//创建chrome实例
 	opts := append(chromedp.DefaultExecAllocatorOptions[:],
 		chromedp.Flag("headless", false),
-		chromedp.ExecPath(`C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`),
+		chromedp.ExecPath("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"),
 	)
 	alloctx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
 	defer cancel()
