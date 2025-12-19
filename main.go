@@ -14,6 +14,7 @@ import (
 
 	"github.com/chromedp/chromedp"
 )
+
 var mu sync.Mutex
 var scanner = bufio.NewScanner(os.Stdin)
 var score int
@@ -39,7 +40,7 @@ func main() {
 	num, err := strconv.Atoi(numStr)
 	wg.Add(num)
 	for i := range num {
-		go GetScore(choi, username, password ,i , &score)
+		go GetScore(choi, username, password, i, &score)
 	}
 	wg.Wait()
 	fmt.Println("最终得分为", score, "分")
@@ -62,7 +63,7 @@ func GetScore(choi, username, password string, i int, score *int) {
 	selector := fmt.Sprintf(`//span[contains(text(), "%s")]`, choi)
 
 	err := chromedp.Run(ctx,
-		chromedp.Navigate("http://172.22.181.82/train/#/login"),
+		chromedp.Navigate("https://cprg.cqupt.edu.cn/train/#/login"),
 		//输入学号
 		chromedp.WaitVisible(`input[name="username"]`, chromedp.ByQuery),
 		chromedp.SendKeys(`input[name="username"]`, username, chromedp.ByQuery),
